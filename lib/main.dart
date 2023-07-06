@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String? workingDirectory='';
   @override
   Widget build(BuildContext context) {
-    print('');
+    print('h');
     return Scaffold(
       appBar: AppBar(
         title: const Text('File'),
