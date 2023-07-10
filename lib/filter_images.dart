@@ -66,14 +66,18 @@ class _FilterImagesState extends State<FilterImages> {
                       ),
                       itemCount: ls.length,
                       itemBuilder: (context, index) {
+                        File file = File(ls[index]);
+
                         return Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black)),
-                          child: SizedBox(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black)),
+                            child: SizedBox(
                               width: 200,
                               height: 200,
-                              child: Image.file(File(ls[index]))),
-                        );
+                              child: file.existsSync()
+                                  ? Image.file(file)
+                                  : Container(),
+                            ));
                       });
                 }),
           ),

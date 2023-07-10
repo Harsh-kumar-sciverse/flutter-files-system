@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String? path;
   Uint8List? image;
   File? imageFile;
-  String? workingDirectory='';
+  String? workingDirectory = '';
   @override
   Widget build(BuildContext context) {
     print('h');
@@ -117,13 +117,15 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(
               height: 20,
             ),
-            ElevatedButton(onPressed: (){
-              Directory current = Directory.current;
-              print('current directroy ${current.path}');
-              setState(() {
-                workingDirectory=current.path;
-              });
-            }, child: Text('Get current directory')),
+            ElevatedButton(
+                onPressed: () {
+                  Directory current = Directory.current;
+                  print('current directroy ${current.path}');
+                  setState(() {
+                    workingDirectory = current.path;
+                  });
+                },
+                child: Text('Get current directory')),
             const SizedBox(
               height: 20,
             ),
