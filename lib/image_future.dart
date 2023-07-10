@@ -1,4 +1,3 @@
-import 'package:cached_memory_image/cached_memory_image.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:io';
@@ -6,9 +5,8 @@ import 'package:flutter/material.dart';
 
 class MyImageWidget extends StatefulWidget {
   final String imagePath;
-  final String id;
 
-  MyImageWidget({required this.imagePath, required this.id});
+  MyImageWidget({required this.imagePath});
 
   @override
   _MyImageWidgetState createState() => _MyImageWidgetState();
@@ -53,14 +51,10 @@ class _MyImageWidgetState extends State<MyImageWidget> {
           width: 200,
           height: 200,
           decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-          child: CachedMemoryImage(
-            uniqueKey: id,
-            bytes: file.readAsBytesSync(),
+          child: Image(
+            image: MemoryImage(file.readAsBytesSync()),
+            // Other image properties like width, height, fit, etc.
           ),
-          // child: Image(
-          //   image: MemoryImage(file.readAsBytesSync()),
-          //   // Other image properties like width, height, fit, etc.
-          // ),
         );
       },
     );
