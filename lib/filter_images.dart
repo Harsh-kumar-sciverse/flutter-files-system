@@ -68,11 +68,16 @@ class _FilterImagesState extends State<FilterImages> {
                       ),
                       itemCount: ls.length,
                       itemBuilder: (context, index) {
-                        Future.delayed(Duration(seconds: 1), () {
-                          return MyImageWidget(
-                            imagePath: ls[index],
-                          );
-                        });
+                        return Container(
+                            width: 200,
+                            height: 200,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black)),
+                            child: Image.memory(
+                                File(ls[index]).readAsBytesSync()));
+                        return MyImageWidget(
+                          imagePath: ls[index],
+                        );
 
                         // return Container(
                         //     decoration: BoxDecoration(
