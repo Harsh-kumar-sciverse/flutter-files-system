@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 
+import 'image_cache.dart';
 import 'image_future.dart';
 
 class FilterImages extends StatefulWidget {
@@ -73,12 +74,17 @@ class _FilterImagesState extends State<FilterImages> {
                             height: 200,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)),
-                            child: File(ls[index]).existsSync()
-                                ? Image.memory(
-                                    File(ls[index]).readAsBytesSync())
-                                : Center(
-                                    child: CircularProgressIndicator(),
-                                  ));
+                            child: Image(
+                              image: CacheImageProvider(
+                                  ls[index], File(ls[index]).readAsBytesSync()),
+                            )
+                            // File(ls[index]).existsSync()
+                            //     ? Image.memory(
+                            //         File(ls[index]).readAsBytesSync())
+                            //     : Center(
+                            //         child: CircularProgressIndicator(),
+                            //       )
+                            );
                         return MyImageWidget(
                           imagePath: ls[index],
                         );
