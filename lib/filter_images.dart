@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 
+import 'image_future.dart';
+
 class FilterImages extends StatefulWidget {
   const FilterImages({super.key});
 
@@ -66,18 +68,19 @@ class _FilterImagesState extends State<FilterImages> {
                       ),
                       itemCount: ls.length,
                       itemBuilder: (context, index) {
-                        File file = File(ls[index]);
-
-                        return Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black)),
-                            child: SizedBox(
-                              width: 200,
-                              height: 200,
-                              child: file.existsSync()
-                                  ? Image.file(file)
-                                  : Container(),
-                            ));
+                        return MyImageWidget(
+                          imagePath: ls[index],
+                        );
+                        // return Container(
+                        //     decoration: BoxDecoration(
+                        //         border: Border.all(color: Colors.black)),
+                        //     child: SizedBox(
+                        //       width: 200,
+                        //       height: 200,
+                        //       child: file.existsSync()
+                        //           ? Image.file(file)
+                        //           : Container(),
+                        //     ));
                       });
                 }),
           ),
