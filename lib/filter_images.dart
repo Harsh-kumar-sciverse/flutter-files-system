@@ -73,8 +73,12 @@ class _FilterImagesState extends State<FilterImages> {
                             height: 200,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.black)),
-                            child: Image.memory(
-                                File(ls[index]).readAsBytesSync()));
+                            child: File(ls[index]).existsSync()
+                                ? Image.memory(
+                                    File(ls[index]).readAsBytesSync())
+                                : Center(
+                                    child: CircularProgressIndicator(),
+                                  ));
                         return MyImageWidget(
                           imagePath: ls[index],
                         );
