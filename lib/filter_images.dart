@@ -70,6 +70,7 @@ class _FilterImagesState extends State<FilterImages> {
                       itemBuilder: (context, index) {
                         return MyImageWidget(
                           imagePath: ls[index],
+                          id: index.toString(),
                         );
                         // return Container(
                         //     decoration: BoxDecoration(
