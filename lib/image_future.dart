@@ -30,26 +30,7 @@ class _MyImageWidgetState extends State<MyImageWidget> {
     return FutureBuilder<File>(
       future: _imageFuture,
       builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done &&
-            snapshot.hasData) {
-          final file = snapshot.data!;
-          return Container(
-            width: 200,
-            height: 200,
-            decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-            child: Image(
-              image: MemoryImage(file.readAsBytesSync()),
-              // Other image properties like width, height, fit, etc.
-            ),
-          );
-        } else if (snapshot.hasError) {
-          return Container(
-              width: 200,
-              height: 200,
-              decoration:
-                  BoxDecoration(border: Border.all(color: Colors.black)),
-              child: Center(child: Text('Error loading image')));
-        } else {
+        if (snapshot.connectionState == ConnectionState.waiting) {
           return Container(
               width: 200,
               height: 200,
@@ -57,6 +38,24 @@ class _MyImageWidgetState extends State<MyImageWidget> {
                   BoxDecoration(border: Border.all(color: Colors.black)),
               child: Center(child: CircularProgressIndicator()));
         }
+        if (snapshot.hasError) {
+          return Container(
+              width: 200,
+              height: 200,
+              decoration:
+                  BoxDecoration(border: Border.all(color: Colors.black)),
+              child: Center(child: Text('Error loading image')));
+        }
+        final file = snapshot.data!;
+        return Container(
+          width: 200,
+          height: 200,
+          decoration: BoxDecoration(border: Border.all(color: Colors.black)),
+          child: Image(
+            image: MemoryImage(file.readAsBytesSync()),
+            // Other image properties like width, height, fit, etc.
+          ),
+        );
       },
     );
   }
